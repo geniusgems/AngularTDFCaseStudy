@@ -1,0 +1,103 @@
+
+<div class="card">
+    <h5 class="card-header">Login</h5>
+    <!-- <div class="card-body">
+        <div class="registration-form">
+            <h2>User Registration</h2>
+            <form #registrationForm="ngForm" (ngSubmit)="registerUser()">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" ngModel required>
+            </div>
+        
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" ngModel required>
+            </div>
+        
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" ngModel required email>
+            </div>
+        
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" ngModel required>
+            </div>
+        
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" ngModel required>
+            </div>
+        
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" ngModel required>
+            </div>
+        
+            <div class="form-group">
+                <label>Gender</label>
+                <div>
+                <label><input type="radio" name="gender" value="Male" ngModel> Male</label>
+                <label><input type="radio" name="gender" value="Female" ngModel> Female</label>
+                <label><input type="radio" name="gender" value="Other" ngModel> Other</label>
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <button type="submit" [disabled]="!registrationForm.valid">Register</button>
+            </div>
+
+            
+            </form>
+        
+            <div *ngIf="isRegistered" class="success-message">
+            <p>Registration successful! You are now registered as {{ registrationForm.value.firstName }} {{ registrationForm.value.lastName }}.</p>
+            </div>
+        </div>
+    </div> -->
+    <div class="card-body">
+        <form #userlogin="ngForm" (ngSubmit)="onsubmit()">
+            <div class="form-group">
+                <label for="fname">First name</label>
+                <input type="text" #fname="ngModel" [class.is-invalid]="fname.invalid && fname.touched"  name="fname" [(ngModel)] = "registeredUser.fname" class="form-control" required>
+                <small class="text-danger" [class.d-none]="fname.valid || fname.touched">Enter a valid first name</small>
+            </div>
+            <div class="form-group">
+                <label for="lname">Last name</label>
+                <input type="text" #lname="ngModel" [class.is-invalid]="lname.invalid && lname.touched"  name="lname" [(ngModel)] = "registeredUser.lname" class="form-control" required>
+                <small class="text-danger" [class.d-none]="lname.valid || lname.touched">Please enter last name</small>
+            </div>
+             
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" #email="ngModel" [class.is-invalid]="email.invalid && email.touched"  pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" name="email" [(ngModel)] = "registeredUser.email" class="form-control" required>
+              <small class="text-danger" [class.d-none]="email.valid">Enter a valid email</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched"  name="password" [(ngModel)] ="registeredUser.password" class="form-control" required minlength="6">
+              <small class="text-danger"  *ngIf="password.errors?.['required']">Password is required.</small>
+              <small class="text-danger" *ngIf="password.errors?.['minlength']">Password must be at least 6 characters long.</small> 
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Confirm Password</label>
+                <input type="password" #cnfpassword="ngModel" name="cnfpassword" [class.is-invalid]="password.value !== cnfpassword.value" [(ngModel)] ="registeredUser.cnfpassword" class="form-control" required minlength="6">
+                <small class="text-danger" *ngIf="password.value !== cnfpassword.value" >Password and Confirm Password don't match</small>
+                
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" #dob="ngModel" name="dob" [(ngModel)] ="registeredUser.dob" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <label><input type="radio" name="gender" value="Male" #gender="ngModel" [(ngModel)] ="registeredUser.gender"> Male</label>
+                <label><input type="radio" name="gender" value="Female" #gender="ngModel" [(ngModel)] ="registeredUser.gender"> Female</label>
+            </div>
+
+            <button type="submit" [disabled]="userlogin.form.invalid" class="btn btn-primary">Submit</button>
+          </form>
+
+    </div>
+</div>

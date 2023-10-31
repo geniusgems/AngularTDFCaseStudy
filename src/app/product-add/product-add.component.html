@@ -1,0 +1,36 @@
+<div>
+    <h2>Add Product</h2>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Product Name</label>
+        <input type="text" id="name" formControlName="name" required>
+        <div *ngIf="productForm.get('name').hasError('required')">
+          Product name is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Product Description</label>
+        <textarea id="description" formControlName="description"></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" id="price" formControlName="price" required>
+        <div *ngIf="productForm.get('price').hasError('required')">
+          Price is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" formControlName="quantity" required>
+        <div *ngIf="productForm.get('quantity').hasError('required')">
+          Quantity is required.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="productForm.invalid">Add Product</button>
+    </form>
+  </div>
+  
